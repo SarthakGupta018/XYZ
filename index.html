@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IRON CLASH — 3D Fighter</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="usability.css" />
+  <link rel="stylesheet" href="progression.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">IC</span><div><strong>IRON CLASH</strong><small>PROTOTYPE 01 · 3D COMBAT</small></div></div>
+      <div class="round-label">RANKED ARENA <span>•</span> ROUND 1</div>
+      <div class="score-panel" aria-live="polite" aria-label="Total points">
+        <span>POINTS</span><strong id="score">0</strong>
+      </div>
+      <button id="help-btn" class="small-button help-button" aria-label="How to play">?</button>
+      <button id="pause-btn" class="small-button" aria-label="Pause game">Ⅱ</button>
+    </header>
+
+    <section class="fight-ui" aria-label="Fight status">
+      <div class="fighter-panel player-panel">
+        <div class="fighter-name"><span>01</span><strong>VANGUARD</strong><em>PLAYER</em></div>
+        <div class="health-track"><div id="player-health" class="health-fill player-fill"></div></div>
+        <div class="health-meta"><span id="player-health-text">100 / 100</span><span>STATUS <b id="player-power">READY</b></span></div>
+      </div>
+      <div class="versus">VS</div>
+      <div class="fighter-panel enemy-panel">
+        <div class="fighter-name"><em>CPU</em><strong>WRAITH</strong><span>02</span></div>
+        <div class="health-track"><div id="enemy-health" class="health-fill enemy-fill"></div></div>
+        <div class="health-meta"><span>CPU FIGHTER</span><span id="enemy-health-text">100 / 100</span></div>
+      </div>
+    </section>
+
+    <section class="stage-wrap">
+      <div class="stage-caption"><span class="live-dot"></span> LIVE SIMULATION <span class="caption-divider">/</span> NEON DOJO</div>
+      <label class="level-picker" for="level-select">
+        <span>LEVEL</span>
+        <select id="level-select" aria-label="Choose level">
+          <option value="1">01 · Rookie</option>
+          <option value="2">02 · Contender</option>
+          <option value="3">03 · Striker</option>
+          <option value="4">04 · Skilled</option>
+          <option value="5">05 · Veteran</option>
+          <option value="6">06 · Elite</option>
+          <option value="7">07 · Expert</option>
+          <option value="8">08 · Master</option>
+          <option value="9">09 · Champion</option>
+          <option value="10">10 · Legend</option>
+        </select>
+      </label>
+      <div id="stage" aria-label="3D fighting arena"></div>
+      <div id="message" class="message"><strong>READY?</strong><span>Press an attack to begin</span></div>
+      <div class="stage-footer"><span>BEST OF 3</span><span id="distance-label">DISTANCE: 4.0M</span><span>BUILD 0.1.0</span></div>
+      <div id="help-overlay" class="overlay help-overlay" role="dialog" aria-modal="true" aria-labelledby="help-title">
+        <div class="overlay-card help-card">
+          <span class="eyebrow">WELCOME TO IRON CLASH</span>
+          <h2 id="help-title">HOW TO PLAY</h2>
+          <p>Choose one of 10 levels, move close, then attack. Hold guard to block. Higher levels make the CPU faster, stronger, and tougher. Open this guide anytime with the ? button.</p>
+          <label class="intro-level-picker" for="intro-level-select">
+            <span>CHOOSE YOUR LEVEL</span>
+            <select id="intro-level-select" aria-label="Choose starting level">
+              <option value="1">01 · Rookie (Easy)</option>
+              <option value="2">02 · Contender</option>
+              <option value="3">03 · Striker</option>
+              <option value="4">04 · Skilled</option>
+              <option value="5">05 · Veteran</option>
+              <option value="6">06 · Elite</option>
+              <option value="7">07 · Expert</option>
+              <option value="8">08 · Master</option>
+              <option value="9">09 · Champion</option>
+              <option value="10">10 · Legend (Hard)</option>
+            </select>
+          </label>
+          <div class="guide-list">
+            <div><strong>MOVE</strong><span>Arrow buttons or W A S D</span></div>
+            <div><strong>PUNCH</strong><span>Fast attack · J</span></div>
+            <div><strong>KICK</strong><span>Strong attack · K</span></div>
+            <div><strong>GUARD</strong><span>Hold to block · L</span></div>
+            <div><strong>BURST</strong><span>Big attack · Space</span></div>
+            <div><strong>JUMP</strong><span>Leap · U</span></div>
+          </div>
+          <div class="help-actions">
+            <button id="start-easy" class="primary-button">START LEVEL 1</button>
+            <button id="start-normal" class="secondary-button">PRACTICE LEVEL 1</button>
+          </div>
+        </div>
+      </div>
+      <div id="pause-overlay" class="overlay hidden"><div class="overlay-card"><span class="eyebrow">COMBAT SUSPENDED</span><h2>PAUSED</h2><p>Take a breath. The arena will wait.</p><button id="resume-btn" class="primary-button">RESUME FIGHT</button></div></div>
+      <div id="result-overlay" class="overlay hidden"><div class="overlay-card"><span class="eyebrow">ROUND COMPLETE</span><h2 id="result-title">VICTORY</h2><p id="result-copy">The arena belongs to you.</p><button id="restart-btn" class="primary-button">FIGHT AGAIN</button></div></div>
+    </section>
+
+    <footer class="bottom-ui">
+      <div class="control-group"><span class="control-heading">MOVE</span><div class="key-row"><kbd>A</kbd><kbd>D</kbd><span>LEFT / RIGHT</span></div><div class="key-row"><kbd>W</kbd><kbd>S</kbd><span>STEP IN / OUT</span></div><div class="key-row"><kbd>U</kbd><span>JUMP</span></div></div>
+      <div class="control-group"><span class="control-heading">ATTACK</span><div class="key-row"><kbd>J</kbd><span>QUICK PUNCH</span></div><div class="key-row"><kbd>K</kbd><span>HEAVY KICK</span></div></div>
+      <div class="control-group"><span class="control-heading">DEFENSE</span><div class="key-row"><kbd>L</kbd><span>GUARD</span></div><div class="key-row"><kbd>SPACE</kbd><span>BURST ATTACK</span></div></div>
+      <button id="reset-btn" class="reset-button">↻ RESET</button>
+    </footer>
+    <div class="mobile-controls" aria-label="Touch controls">
+      <div class="mobile-movement"><button aria-label="Move left" data-key="a">◀</button><button aria-label="Move forward" data-key="w">▲</button><button aria-label="Move back" data-key="s">▼</button><button aria-label="Move right" data-key="d">▶</button></div>
+      <div class="mobile-actions"><button data-key="j">PUNCH</button><button data-key="k">KICK</button><button data-key="l">GUARD</button><button data-key=" ">BURST</button><button data-action="jump">JUMP</button></div>
+    </div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>

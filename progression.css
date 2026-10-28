@@ -1,0 +1,158 @@
+.level-picker {
+  position: absolute;
+  z-index: 4;
+  top: 8px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border: 1px solid #405265;
+  border-radius: 6px;
+  background: #0b121ddd;
+  box-shadow: 0 4px 16px #0008;
+  color: #b6c8d7;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.level-picker select {
+  max-width: 150px;
+  border: 0;
+  background: transparent;
+  color: #f4f6fa;
+  font: 700 11px Inter, system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.level-picker select option {
+  background: #101722;
+  color: #f4f6fa;
+}
+
+.level-picker select:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.level-picker select:disabled {
+  color: #a4b1bd;
+  cursor: not-allowed;
+}
+
+.intro-level-picker {
+  display: grid;
+  gap: 6px;
+  margin: 0 auto 10px;
+  text-align: left;
+}
+
+.intro-level-picker span {
+  color: #b6c8d7;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.intro-level-picker select {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid #405265;
+  border-radius: 6px;
+  background: #101722;
+  color: #f4f6fa;
+  font: 700 12px Inter, system-ui, sans-serif;
+}
+
+.intro-level-picker select:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.mobile-actions button[data-action="jump"] {
+  border-color: #428aa0;
+  color: #b7f4ff;
+}
+
+.mobile-actions button[data-action="jump"]:active {
+  border-color: var(--cyan);
+  background: #1b303a;
+  color: var(--cyan);
+}
+
+#stage canvas {
+  filter: saturate(1.12) contrast(1.04);
+}
+
+.stage-wrap {
+  border-color: #345064;
+  box-shadow: 0 22px 74px #000a, 0 0 34px #1bc6d018;
+}
+
+.brand-mark {
+  box-shadow: 0 0 22px #38e6dc55;
+}
+
+.health-track {
+  box-shadow: 0 0 14px #0008;
+}
+
+.primary-button,
+.secondary-button,
+.mobile-controls button,
+.small-button {
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease, transform .15s ease;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.mobile-controls button:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  .level-picker {
+    top: 7px;
+    right: 7px;
+    gap: 5px;
+    padding: 4px 6px;
+    font-size: 8px;
+  }
+
+  .level-picker select {
+    max-width: 120px;
+    font-size: 10px;
+  }
+
+  .stage-caption {
+    max-width: calc(100% - 155px);
+  }
+}
+
+@media (max-width: 390px) {
+  .level-picker {
+    right: 5px;
+  }
+
+  .level-picker select {
+    max-width: 108px;
+  }
+
+  .stage-caption {
+    max-width: calc(100% - 140px);
+    letter-spacing: .6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
